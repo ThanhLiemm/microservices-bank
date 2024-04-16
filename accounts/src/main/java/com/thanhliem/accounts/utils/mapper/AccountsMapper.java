@@ -1,4 +1,4 @@
-package com.thanhliem.accounts.mapper;
+package com.thanhliem.accounts.utils.mapper;
 
 import com.thanhliem.accounts.dto.AccountsDto;
 import com.thanhliem.accounts.entity.Accounts;
