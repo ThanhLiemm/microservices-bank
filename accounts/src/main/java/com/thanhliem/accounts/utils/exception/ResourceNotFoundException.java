@@ -1,12 +1,12 @@
 package com.thanhliem.accounts.utils.exception;
 
+import com.thanhliem.accounts.utils.constants.ExceptionMsg;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String resourceName, String fieldName, String fieldValue) {
-        super(String.format("%s not found with the given input data %s : '%s'", resourceName,
-                fieldName, fieldValue));
+        super(ExceptionMsg.RESOURCE_NOT_FOUND.getMessage(resourceName, fieldName, fieldValue));
     }
 }
