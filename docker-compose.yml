@@ -1,0 +1,37 @@
+services:
+  accounts:
+    image: "m0ewth/accounts-service:v1.0.0"
+    container_name: accounts-ms
+    ports:
+      - "8081:8081"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - tl_bank
+  cards:
+    image: "m0ewth/cards-service:v1.0.0"
+    container_name: cards-ms
+    ports:
+      - "8082:8082"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - tl_bank
+  loans:
+    image: "m0ewth/loans-service:v1.0.0"
+    container_name: loans-ms
+    ports:
+      - "8083:8083"
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - tl_bank
+networks:
+  tl_bank:
+    driver: "bridge"
