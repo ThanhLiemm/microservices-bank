@@ -1,0 +1,11 @@
+build:
+  version: "3.0"
+
+cards:
+  message: "Welcome to TL_Bank cards related local APIs "
+  contactDetails:
+    name: "Thanh Liem - Developer"
+    email: "thanhliem@tl_bank.com"
+  onCallSupport:
+    - (84) 123-456-789
+    - (84) 987-654-321

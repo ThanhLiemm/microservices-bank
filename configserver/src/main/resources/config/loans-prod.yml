@@ -1,0 +1,11 @@
+build:
+  version: "1.0"
+
+loans:
+  message: "Welcome to TL_Bank loans related prod APIs "
+  contactDetails:
+    name: "Thanh Liem - Product Owner"
+    email: "thanhliem@tl_bank.com"
+  onCallSupport:
+    - (84) 123-456-789
+    - (84) 987-654-321

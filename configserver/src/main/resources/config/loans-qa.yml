@@ -1,0 +1,11 @@
+build:
+  version: "2.0"
+
+loans:
+  message: "Welcome to TL_Bank loans related QA APIs "
+  contactDetails:
+    name: "Thanh Liem - QA Lead"
+    email: "thanhliem@tl_bank.com"
+  onCallSupport:
+    - (84) 123-456-789
+    - (84) 987-654-321
