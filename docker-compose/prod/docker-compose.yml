@@ -1,0 +1,80 @@
+services:
+  rabbit:
+    extends:
+      file: common-config.yml
+      service: network-deploy-service
+    image: rabbitmq:3.13-management
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 5s
+
+  configserver:
+    extends:
+      file: common-config.yml
+      service: microservice-base-config
+    image: "m0ewth/configserver-service:v1.0.1"
+    container_name: configserver-ms
+    ports:
+      - "8084:8084"
+    depends_on:
+      rabbit:
+        condition: service_healthy
+    healthcheck:
+      test: "wget -T5 -qO- http://localhost:8084/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  accounts:
+    extends:
+      file: common-config.yml
+      service: microservice-clientConfigServer-config
+    image: "m0ewth/accounts-service:v1.0.1"
+    container_name: accounts-ms
+    ports:
+      - "8081:8081"
+    depends_on:
+      configserver:
+        condition: service_healthy
+    environment:
+      SPRING_APPLICATION_NAME: "accounts"
+
+  cards:
+    extends:
+      file: common-config.yml
+      service: microservice-clientConfigServer-config
+    image: "m0ewth/cards-service:v1.0.1"
+    container_name: cards-ms
+    ports:
+      - "8082:8082"
+    depends_on:
+      configserver:
+        condition: service_healthy
+    environment:
+      SPRING_APPLICATION_NAME: "cards"
+
+  loans:
+    extends:
+      file: common-config.yml
+      service: microservice-clientConfigServer-config
+    image: "m0ewth/loans-service:v1.0.1"
+    container_name: loans-ms
+    ports:
+      - "8083:8083"
+    depends_on:
+      configserver:
+        condition: service_healthy
+    environment:
+      SPRING_APPLICATION_NAME: "loans"
+
+networks:
+  tl_bank:
+    driver: "bridge"
