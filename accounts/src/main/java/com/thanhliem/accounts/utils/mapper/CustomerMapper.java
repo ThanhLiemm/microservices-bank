@@ -1,5 +1,6 @@
 package com.thanhliem.accounts.utils.mapper;
 
+import com.thanhliem.accounts.dto.CustomerDetailsDto;
 import com.thanhliem.accounts.dto.CustomerDto;
 import com.thanhliem.accounts.entity.Customer;
 
@@ -24,5 +25,16 @@ public class CustomerMapper {
 
     public static Customer mapToCustomer(CustomerDto customerDto) {
         return mapToCustomer(customerDto, new Customer());
+    }
+
+    public static CustomerDetailsDto mapToCustomerDetailsDto(Customer customer, CustomerDetailsDto customerDetailsDto) {
+        customerDetailsDto.setName(customer.getName());
+        customerDetailsDto.setEmail(customer.getEmail());
+        customerDetailsDto.setMobileNumber(customer.getMobileNumber());
+        return customerDetailsDto;
+    }
+
+    public static CustomerDetailsDto mapToCustomerDetailsDto(Customer customer) {
+        return mapToCustomerDetailsDto(customer, new CustomerDetailsDto());
     }
 }
