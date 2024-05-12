@@ -27,6 +27,8 @@ spring:
 management:
   endpoints:
     web:
+      discovery:
+        enable: true
       exposure:
         include: "*"
   health:
