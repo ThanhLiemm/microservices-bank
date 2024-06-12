@@ -34,5 +34,5 @@ docker compose up
 
 ## <a name="using-application"></a>Testing
 
-* Using postman by import files: [microservice_api](Microservices API.postman_collection.json), [microservie_api_env](Microservices local.postman_environment.json)
+* Using postman by import files: [microservice_api](Microservices%20API.postman_collection.json), [microservie_api_env](Microservices%20local.postman_environment.json)
 * Using api OpenAPI in localhost
