@@ -21,6 +21,7 @@ public class GatewayserverApplication {
 				.route(p -> p
 						.path("/tl_bank/accounts/**")
 						.filters( f -> f.rewritePath("/tl_bank/accounts/(?<segment>.*)","/${segment}")
+								.circuitBreaker(config -> config.setName("accountsCircuitBreaker").setFallbackUri("forward:/contactSupport"))
 								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
 						.uri("lb://ACCOUNTS"))
 				.route(p -> p
