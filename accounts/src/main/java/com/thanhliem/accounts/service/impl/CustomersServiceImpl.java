@@ -51,11 +51,13 @@ public class CustomersServiceImpl implements ICustomersService {
 
         ResponseEntity<LoansDto> loansDtoResponseEntity = loansFeignClient.fetchLoanDetails(
                 mobileNumber, correlationId);
-        customerDetailsDto.setLoansDto(loansDtoResponseEntity.getBody());
+        if(loansDtoResponseEntity != null)
+            customerDetailsDto.setLoansDto(loansDtoResponseEntity.getBody());
 
         ResponseEntity<CardsDto> cardsDtoResponseEntity = cardsFeignClient.fetchCardDetails(
                 mobileNumber, correlationId);
-        customerDetailsDto.setCardsDto(cardsDtoResponseEntity.getBody());
+        if(cardsDtoResponseEntity != null)
+            customerDetailsDto.setCardsDto(cardsDtoResponseEntity.getBody());
 
         return customerDetailsDto;
 
