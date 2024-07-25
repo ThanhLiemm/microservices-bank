@@ -6,6 +6,7 @@ import com.thanhliem.accounts.dto.ErrorResponseDto;
 import com.thanhliem.accounts.dto.ResponseDto;
 import com.thanhliem.accounts.service.IAccountsService;
 import com.thanhliem.accounts.utils.constants.AccountsConstants;
+import io.github.resilience4j.retry.annotation.Retry;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -190,11 +191,19 @@ public class AccountsController {
             )
     }
     )
+    @Retry(name="getBuildInfo",  fallbackMethod = "getBuildInfoFallback")
     @GetMapping("/build-info")
     public ResponseEntity<String> getBuildInfo() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(buildVersion);
+    }
+
+    @GetMapping("/build-info")
+    public ResponseEntity<String> getBuildInfoFallback(Throwable throwable) {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Fallback response after n times retry");
     }
 
     @Operation(
