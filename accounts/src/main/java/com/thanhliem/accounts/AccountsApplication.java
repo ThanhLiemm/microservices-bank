@@ -28,7 +28,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
                 )
         ),
         externalDocs = @ExternalDocumentation(
-                description =  "TL_Banks Accounts microservice REST API Documentation",
+                description = "TL_Banks Accounts microservice REST API Documentation",
                 url = ""
         )
 )
