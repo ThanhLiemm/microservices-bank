@@ -25,23 +25,24 @@ public class GatewayserverApplication {
 		return routeLocatorBuilder.routes()
 				.route(p -> p
 						.path("/tl_bank/accounts/**")
-						.filters( f -> f.rewritePath("/tl_bank/accounts/(?<segment>.*)","/${segment}")
-								.circuitBreaker(config -> config.setName("accountsCircuitBreaker").setFallbackUri("forward:/contactSupport"))
-								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+						.filters( f -> f.rewritePath("/tl_bank/accounts/(?<segment>.*)","/${segment}"))
+//								.circuitBreaker(config -> config.setName("accountsCircuitBreaker").setFallbackUri("forward:/contactSupport"))
+//								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
 						.uri("lb://ACCOUNTS"))
 				.route(p -> p
 						.path("/tl_bank/loans/**")
-						.filters( f -> f.rewritePath("/tl_bank/loans/(?<segment>.*)","/${segment}")
-								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
-								.retry(retryConfig -> retryConfig.setRetries(2)
-										.setMethods(HttpMethod.GET)
-										.setBackoff(Duration.ofMillis(100), Duration.ofMillis(500), 2,true)))
+						.filters( f -> f.rewritePath("/tl_bank/loans/(?<segment>.*)","/${segment}"))
+//								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString()))
+//								.retry(retryConfig -> retryConfig.setRetries(2)
+//										.setMethods(HttpMethod.GET)
+//										.setBackoff(Duration.ofMillis(100), Duration.ofMillis(500), 2,true)))
 						.uri("lb://LOANS"))
 				.route(p -> p
 						.path("/tl_bank/cards/**")
-						.filters( f -> f.rewritePath("/tl_bank/cards/(?<segment>.*)","/${segment}")
-								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
-								.requestRateLimiter(config -> config.setRateLimiter(redisRateLimiter()).setKeyResolver(userKeyResolver())))
+						.filters( f -> f.rewritePath("/tl_bank/cards/(?<segment>.*)","/${segment}"))
+//								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+//								.addResponseHeader("X-Response-Time", LocalDateTime.now().toString())
+//								.requestRateLimiter(config -> config.setRateLimiter(redisRateLimiter()).setKeyResolver(userKeyResolver())))
 						.uri("lb://CARDS")).build();
 	}
 
