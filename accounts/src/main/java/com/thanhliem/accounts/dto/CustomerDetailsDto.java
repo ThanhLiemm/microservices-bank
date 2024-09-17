@@ -8,8 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
-@Schema(name = "CustomerDetails", description = "Schema to hold Customer, Account, Cards and " +
-        "Loans information")
+@Schema(name = "CustomerDetails", description = "Schema to hold Customer, Account, Cards and " + "Loans information")
 public class CustomerDetailsDto {
     @Schema(description = "Name of the customer", example = "Thanh Liem")
     @NotEmpty(message = "Name can not be a null or empty")
@@ -18,7 +17,8 @@ public class CustomerDetailsDto {
 
     @Schema(description = "Email address of the customer", example = "tutor@eazybytes.com")
     @NotEmpty(message = "Email address can not be a null or empty")
-    @Email(message = "Email address should be a valid value") private String email;
+    @Email(message = "Email address should be a valid value")
+    private String email;
 
     @Schema(description = "Mobile Number of the customer", example = "9345432123")
     @Pattern(regexp = "(^$|[0-9]{10})", message = "Mobile number must be 10 digits")

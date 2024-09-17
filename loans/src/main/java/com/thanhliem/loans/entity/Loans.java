@@ -1,26 +1,37 @@
 package com.thanhliem.loans.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Getter @Setter @ToString @AllArgsConstructor @NoArgsConstructor
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class Loans extends BaseEntity {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long loanId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long loanId;
 
-	private String mobileNumber;
+    private String mobileNumber;
 
-	private String loanNumber;
+    private String loanNumber;
 
-	private String loanType;
+    private String loanType;
 
-	private int totalLoan;
+    private int totalLoan;
 
-	private int amountPaid;
+    private int amountPaid;
 
-	private int outstandingAmount;
-	
+    private int outstandingAmount;
+
 }

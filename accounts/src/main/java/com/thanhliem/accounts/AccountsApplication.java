@@ -12,25 +12,10 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-@OpenAPIDefinition(
-        info = @Info(
-                title = "Accounts microservice REST API Documentation",
-                description = "TL_Banks Accounts microservice REST API Documentation",
-                version = "v1",
-                contact = @Contact(
-                        name = "Thanh Liem",
-                        email = "hatriwi@gmail.com",
-                        url = ""
-                ),
-                license = @License(
-                        name = "Apache 3.0",
-                        url = ""
-                )
-        ),
-        externalDocs = @ExternalDocumentation(
-                description = "TL_Banks Accounts microservice REST API Documentation",
-                url = ""
-        )
+@OpenAPIDefinition(info = @Info(title = "Accounts microservice REST API Documentation", description = "TL_Banks "
+    + "Accounts microservice REST API Documentation", version = "v1", contact = @Contact(name = "Thanh Liem", email =
+    "hatriwi@gmail.com", url = ""), license = @License(name = "Apache 3.0", url = "")), externalDocs =
+@ExternalDocumentation(description = "TL_Banks Accounts microservice REST API Documentation", url = "")
 )
 @EnableFeignClients
 @EnableConfigurationProperties(value = {AccountsContactInfoDto.class})

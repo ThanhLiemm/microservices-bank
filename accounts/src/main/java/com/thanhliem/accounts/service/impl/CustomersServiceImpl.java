@@ -37,27 +37,25 @@ public class CustomersServiceImpl implements ICustomersService {
     @Override
     public CustomerDetailsDto fetchCustomerDetails(String mobileNumber, String correlationId) {
         Customer customer = customerRepository.findByMobileNumber(mobileNumber).orElseThrow(
-                () -> new ResourceNotFoundException("Customer", "mobileNumber", mobileNumber)
+            () -> new ResourceNotFoundException("Customer", "mobileNumber", mobileNumber)
         );
-        Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId())
-                .orElseThrow(
-                        () -> new ResourceNotFoundException("Account", "customerId",
-                                customer.getCustomerId().toString())
-                );
+        Accounts accounts = accountsRepository.findByCustomerId(customer.getCustomerId()).orElseThrow(
+            () -> new ResourceNotFoundException("Account", "customerId", customer.getCustomerId().toString()));
 
         CustomerDetailsDto customerDetailsDto = CustomerMapper.mapToCustomerDetailsDto(customer);
-        customerDetailsDto.setAccountsDto(
-                AccountsMapper.mapToAccountsDto(accounts, new AccountsDto()));
+        customerDetailsDto.setAccountsDto(AccountsMapper.mapToAccountsDto(accounts, new AccountsDto()));
 
-        ResponseEntity<LoansDto> loansDtoResponseEntity = loansFeignClient.fetchLoanDetails(
-                mobileNumber, correlationId);
-        if(loansDtoResponseEntity != null)
+        ResponseEntity<LoansDto> loansDtoResponseEntity = loansFeignClient.fetchLoanDetails(mobileNumber,
+            correlationId);
+        if (loansDtoResponseEntity != null) {
             customerDetailsDto.setLoansDto(loansDtoResponseEntity.getBody());
+        }
 
-        ResponseEntity<CardsDto> cardsDtoResponseEntity = cardsFeignClient.fetchCardDetails(
-                mobileNumber, correlationId);
-        if(cardsDtoResponseEntity != null)
+        ResponseEntity<CardsDto> cardsDtoResponseEntity = cardsFeignClient.fetchCardDetails(mobileNumber,
+            correlationId);
+        if (cardsDtoResponseEntity != null) {
             customerDetailsDto.setCardsDto(cardsDtoResponseEntity.getBody());
+        }
 
         return customerDetailsDto;
 

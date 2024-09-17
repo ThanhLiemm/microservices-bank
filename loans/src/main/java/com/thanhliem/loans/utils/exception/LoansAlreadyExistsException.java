@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
 public class LoansAlreadyExistsException extends RuntimeException {
 
-    public LoansAlreadyExistsException(String message){
+    public LoansAlreadyExistsException(String message) {
         super(message);
     }
 

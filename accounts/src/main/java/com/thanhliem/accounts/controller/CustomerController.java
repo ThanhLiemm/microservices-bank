@@ -17,11 +17,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-@Tag(
-        name = "REST API for Customers in TL_Bank",
-        description = "REST APIs in TL_Bank to FETCH customer details"
+@Tag(name = "REST API for Customers in TL_Bank", description = "REST APIs in TL_Bank to FETCH customer details"
 )
 @RestController
 @RequestMapping(path = "/api", produces = {MediaType.APPLICATION_JSON_VALUE})
@@ -32,37 +34,23 @@ public class CustomerController {
     @Autowired
     private ICustomersService service;
 
-    @Operation(
-            summary = "Fetch Customer Details REST API",
-            description = "REST API to fetch Customer details based on a mobile number"
+    @Operation(summary = "Fetch Customer Details REST API", description = "REST API to fetch Customer details based "
+        + "on a mobile number"
     )
-    @ApiResponses({
-            @ApiResponse(
-                    responseCode = "200",
-                    description = "HTTP Status OK"
-            ),
-            @ApiResponse(
-                    responseCode = "500",
-                    description = "HTTP Status Internal Server Error",
-                    content = @Content(
-                            schema = @Schema(implementation = ErrorResponseDto.class)
-                    )
-            )
+    @ApiResponses({@ApiResponse(responseCode = "200", description = "HTTP Status OK"),
+        @ApiResponse(responseCode = "500", description = "HTTP Status Internal Server Error", content =
+        @Content(schema = @Schema(implementation = ErrorResponseDto.class)))
     }
     )
     @GetMapping("/fetchCustomerDetails")
-    public ResponseEntity<CustomerDetailsDto> fetchCustomerDetails(@RequestHeader("tl_bank" +
-            "-correlation-id")
+    public ResponseEntity<CustomerDetailsDto> fetchCustomerDetails(@RequestHeader("tl_bank" + "-correlation-id")
                                                                    String correlationId,
                                                                    @RequestParam
-                                                                   @Pattern(regexp = "(^$|[0-9" +
-                                                                           "]{10})", message =
-                                                                           "Mobile number must be" +
-                                                                                   " 10 digits")
+                                                                   @Pattern(regexp = "(^$|[0-9" + "]{10})", message =
+                                                                       "Mobile number must be" + " 10 digits")
                                                                    String mobileNumber) {
         logger.debug("tl_bank-correlation-id found: {} ", correlationId);
-        CustomerDetailsDto customerDetailsDto = service.fetchCustomerDetails(mobileNumber,
-                correlationId);
+        CustomerDetailsDto customerDetailsDto = service.fetchCustomerDetails(mobileNumber, correlationId);
         return ResponseEntity.status(HttpStatus.SC_OK).body(customerDetailsDto);
     }
 }

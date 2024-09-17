@@ -10,7 +10,7 @@
     source_labels = ["__meta_docker_container_name"]
     regex         = "/(.*)"
     target_label  = "container"
-    }
+  }
   }
     
     loki.source.docker "flog_scrape" {
@@ -25,6 +25,6 @@
     endpoint {
     url       = "http://gateway:3100/loki/api/v1/push"
     tenant_id = "tenant1"
-    }
+  }
     external_labels = {}
   }

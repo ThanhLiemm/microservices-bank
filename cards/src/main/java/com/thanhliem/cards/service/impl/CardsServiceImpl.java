@@ -9,11 +9,10 @@ import com.thanhliem.cards.utils.constants.ExceptionMsg;
 import com.thanhliem.cards.utils.exception.CardAlreadyExistsException;
 import com.thanhliem.cards.utils.exception.ResourceNotFoundException;
 import com.thanhliem.cards.utils.mapper.CardsMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 import java.util.Random;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class CardsServiceImpl implements ICardsService {
@@ -25,8 +24,7 @@ public class CardsServiceImpl implements ICardsService {
     public void createCard(String mobileNumber) {
         Optional<Cards> optionalCards = cardsRepository.findByMobileNumber(mobileNumber);
         if (optionalCards.isPresent()) {
-            throw new CardAlreadyExistsException(
-                    ExceptionMsg.ALREADY_EXIST.getMessage(mobileNumber));
+            throw new CardAlreadyExistsException(ExceptionMsg.ALREADY_EXIST.getMessage(mobileNumber));
         }
         cardsRepository.save(createNewCard(mobileNumber));
     }
@@ -34,7 +32,7 @@ public class CardsServiceImpl implements ICardsService {
     @Override
     public CardsDto fetchCard(String mobileNumber) {
         Cards cards = cardsRepository.findByMobileNumber(mobileNumber).orElseThrow(
-                () -> new ResourceNotFoundException("Card", "mobileNumber", mobileNumber)
+            () -> new ResourceNotFoundException("Card", "mobileNumber", mobileNumber)
         );
         return CardsMapper.mapToCardsDto(cards);
     }
@@ -42,8 +40,7 @@ public class CardsServiceImpl implements ICardsService {
     @Override
     public boolean updateCard(CardsDto cardsDto) {
         Cards cards = cardsRepository.findByCardNumber(cardsDto.getCardNumber()).orElseThrow(
-                () -> new ResourceNotFoundException("Card", "CardNumber",
-                        cardsDto.getCardNumber()));
+            () -> new ResourceNotFoundException("Card", "CardNumber", cardsDto.getCardNumber()));
         CardsMapper.mapToCards(cardsDto, cards);
         cardsRepository.save(cards);
         return true;
@@ -52,7 +49,7 @@ public class CardsServiceImpl implements ICardsService {
     @Override
     public boolean deleteCard(String mobileNumber) {
         Cards cards = cardsRepository.findByMobileNumber(mobileNumber).orElseThrow(
-                () -> new ResourceNotFoundException("Card", "mobileNumber", mobileNumber)
+            () -> new ResourceNotFoundException("Card", "mobileNumber", mobileNumber)
         );
         cardsRepository.deleteById(cards.getCardId());
         return true;

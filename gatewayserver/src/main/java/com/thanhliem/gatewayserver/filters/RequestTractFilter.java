@@ -24,7 +24,7 @@ public class RequestTractFilter implements GlobalFilter {
         HttpHeaders requestHeaders = exchange.getRequest().getHeaders();
         if (isCorrelationIdPresent(requestHeaders)) {
             logger.debug("tl_bank-correlation-id found in RequestTraceFilter : {}",
-                    filterUtility.getCorrelationId(requestHeaders));
+                filterUtility.getCorrelationId(requestHeaders));
         } else {
             String correlationID = generateCorrelationId();
             exchange = filterUtility.setCorrelationId(exchange, correlationID);

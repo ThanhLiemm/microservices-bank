@@ -12,33 +12,18 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 
-@OpenAPIDefinition(
-		info = @Info(
-				title = "Cards microservice REST API Documentation",
-				description = "TL_Banks Cards microservice REST API Documentation",
-				version = "v1",
-				contact = @Contact(
-						name = "Thanh Liem",
-						email = "hatriwi@gmail.com",
-						url = ""
-				),
-				license = @License(
-						name = "Apache 3.0",
-						url = ""
-				)
-		),
-		externalDocs = @ExternalDocumentation(
-				description =  "TL_Banks Cards microservice REST API Documentation",
-				url = ""
-		)
+@OpenAPIDefinition(info = @Info(title = "Cards microservice REST API Documentation", description = "TL_Banks Cards "
+    + "microservice REST API Documentation", version = "v1", contact = @Contact(name = "Thanh Liem", email = "hatriwi"
+    + "@gmail.com", url = ""), license = @License(name = "Apache 3.0", url = "")), externalDocs =
+@ExternalDocumentation(description = "TL_Banks Cards microservice REST API Documentation", url = "")
 )
 @EnableConfigurationProperties(value = {CardsContactInfoDto.class})
 @SpringBootApplication
 @EnableJpaAuditing(auditorAwareRef = "auditAwareImpl")
 public class CardsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CardsApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CardsApplication.class, args);
+    }
 
 }
