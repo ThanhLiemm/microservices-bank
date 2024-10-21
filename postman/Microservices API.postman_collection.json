@@ -1,0 +1,1177 @@
+{
+	"info": {
+		"_postman_id": "385a79b3-db0c-4149-9465-8848cc9fea94",
+		"name": "Microservices API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31516539"
+	},
+	"item": [
+		{
+			"name": "accounts",
+			"item": [
+				{
+					"name": "CreateAccount",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Thanh Liem\",\n    \"email\": \"thanhliem123@gmail.com\",\n    \"mobileNumber\": \"0123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{accounts_url}}/create",
+							"host": [
+								"{{accounts_url}}"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FetchAccountDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{accounts_url}}/fetch?mobileNumber=0123456789",
+							"host": [
+								"{{accounts_url}}"
+							],
+							"path": [
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0123456789"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateAccountDetails",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Thanh Liem\",\n    \"email\": \"thanhliem@123\",\n    \"mobileNumber\": \"0901234578\",\n    \"accountsDto\": {\n        \"accountNumber\": 1387892318,\n        \"accountType\": \"Savings\",\n        \"branchAddress\": \"123 Main Street, New Yorkk\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{accounts_url}}/update",
+							"host": [
+								"{{accounts_url}}"
+							],
+							"path": [
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAccountDetails",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{accounts_url}}/delete?mobileNumber=1387892318",
+							"host": [
+								"{{accounts_url}}"
+							],
+							"path": [
+								"delete"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "1387892318"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "build-info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{accounts_url}}/build-info",
+							"host": [
+								"{{accounts_url}}"
+							],
+							"path": [
+								"build-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "java-version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{accounts_url}}/java-version",
+							"host": [
+								"{{accounts_url}}"
+							],
+							"path": [
+								"java-version"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contact-info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{accounts_url}}/contact-info",
+							"host": [
+								"{{accounts_url}}"
+							],
+							"path": [
+								"contact-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RefreshConfig",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/actuator/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"actuator",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BusRefresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/actuator/busrefresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"actuator",
+								"busrefresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ShutDown",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/actuator/shutdown",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"actuator",
+								"shutdown"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FetchCustomerDetails",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "eazybank-correlation-id",
+								"value": "43gtrt-trtrrtgf"
+							},
+							{
+								"key": "tl_bank-correlation-id",
+								"value": "test"
+							}
+						],
+						"url": {
+							"raw": "{{accounts_url}}/fetchCustomerDetails?mobileNumber=0901234578",
+							"host": [
+								"{{accounts_url}}"
+							],
+							"path": [
+								"fetchCustomerDetails"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0901234578"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cards",
+			"item": [
+				{
+					"name": "CreateCard",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{cards_url}}/create?mobileNumber=0901234578",
+							"host": [
+								"{{cards_url}}"
+							],
+							"path": [
+								"create"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0901234578"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FetchCardDetails",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "tl_bank-correlation-id",
+								"value": "test"
+							}
+						],
+						"url": {
+							"raw": "{{cards_url}}/fetch?mobileNumber=0901234578",
+							"host": [
+								"{{cards_url}}"
+							],
+							"path": [
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0901234578"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateCardDetails",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobileNumber\": \"0901234578\",\n    \"cardNumber\": \"100577335374\",\n    \"cardType\": \"Credit Card\",\n    \"totalLimit\": 1000000,\n    \"amountUsed\": 0,\n    \"availableAmount\": 100000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{cards_url}}/update",
+							"host": [
+								"{{cards_url}}"
+							],
+							"path": [
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCardDetails",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{cards_url}}/delete?mobileNumber=0912345678",
+							"host": [
+								"{{cards_url}}"
+							],
+							"path": [
+								"delete"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0912345678"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "build-info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/build-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"build-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "java-version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/java-version",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"java-version"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contact-info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/contact-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"contact-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RefreshConfig",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/actuator/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"actuator",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ShutDown",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/actuator/shutdown",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"actuator",
+								"shutdown"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "loans",
+			"item": [
+				{
+					"name": "CreateLoan",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{loans_url}}/create?mobileNumber=0901234578",
+							"host": [
+								"{{loans_url}}"
+							],
+							"path": [
+								"create"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0901234578"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FetchLoanDetails",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "tl_bank-correlation-id",
+								"value": "test"
+							}
+						],
+						"url": {
+							"raw": "{{loans_url}}/fetch?mobileNumber=0901234578",
+							"host": [
+								"{{loans_url}}"
+							],
+							"path": [
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0901234578"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateLoanDetails",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobileNumber\": \"0901234578\",\n    \"loanNumber\": \"100672749407\",\n    \"loanType\": \"Home Loan\",\n    \"totalLoan\": 100000,\n    \"amountPaid\": 100,\n    \"outstandingAmount\": 100000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{loans_url}}/update",
+							"host": [
+								"{{loans_url}}"
+							],
+							"path": [
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteLoanDetails",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{loans_url}}/delete?mobileNumber=0901234578",
+							"host": [
+								"{{loans_url}}"
+							],
+							"path": [
+								"delete"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0901234578"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "build-info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/build-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"build-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "java-version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/java-version",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"java-version"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "contact-info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/contact-info",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"contact-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RefreshConfig",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/actuator/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"actuator",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ShutDown",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/actuator/shutdown",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"actuator",
+								"shutdown"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "eurekaserver",
+			"item": [
+				{
+					"name": "eureka_apps",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8085/eureka/apps/cards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"eureka",
+								"apps",
+								"cards"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "gatewayserver",
+			"item": [
+				{
+					"name": "create account",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8780/realms/Tl_bank/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid email profile",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "Mi8N6yQ2HPwRI4HsG2sJS5wKDkyPupS9",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "tl-bank-cc",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "body",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "client_credentials",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Tester\",\n    \"email\": \"test@gmail.com\",\n    \"mobileNumber\": \"3123456789\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}/accounts/api/create",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"accounts",
+								"api",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create cards",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8780/realms/Tl_bank/protocol/openid-connect/auth",
+									"type": "string"
+								},
+								{
+									"key": "state",
+									"value": "random-random-random-random",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "tl-bank-ui",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "cOinPGlbNQQQHT2q7ZPyKAjohwUHgTAJ",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Auth_code",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8780/realms/Tl_bank/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid email profile",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "body",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{gateway_url}}/cards/api/create?mobileNumber=4123456789",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"cards",
+								"api",
+								"create"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "4123456789"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create loans",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8780/realms/Tl_bank/protocol/openid-connect/auth",
+									"type": "string"
+								},
+								{
+									"key": "state",
+									"value": "random-random-random-random",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "tl-bank-ui",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "cOinPGlbNQQQHT2q7ZPyKAjohwUHgTAJ",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Auth_code",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8780/realms/Tl_bank/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid email profile",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "body",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_url}}/loans/api/create?mobileNumber=4123456789",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"loans",
+								"api",
+								"create"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "4123456789"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get customer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_url}}/accounts/api/fetchCustomerDetails?mobileNumber=0901234578",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"accounts",
+								"api",
+								"fetchCustomerDetails"
+							],
+							"query": [
+								{
+									"key": "mobileNumber",
+									"value": "0901234578"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "accounts contact",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_url}}/accounts/api/contact-info",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"accounts",
+								"api",
+								"contact-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loans contact",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_url}}/loans/api/contact-info",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"loans",
+								"api",
+								"contact-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "accounts build info",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_url}}/accounts/api/build-info",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"accounts",
+								"api",
+								"build-info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "account java version",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_url}}/accounts/api/java-version",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"accounts",
+								"api",
+								"java-version"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "message",
+			"item": [
+				{
+					"name": "email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountNumber\": 1234545454,\n    \"name\": \"thanh liem\",\n    \"email\": \"tl@gamil.com\",\n    \"mobileNumber\": \"4354437687\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{message_url}}/email",
+							"host": [
+								"{{message_url}}"
+							],
+							"path": [
+								"email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sms",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountNumber\": 1234545454,\n    \"name\": \"thanh liem\",\n    \"email\": \"tl@gamil.com\",\n    \"mobileNumber\": \"4354437687\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{message_url}}/sms",
+							"host": [
+								"{{message_url}}"
+							],
+							"path": [
+								"sms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "emailsms",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountNumber\": 1234545454,\n    \"name\": \"thanh liem\",\n    \"email\": \"tl@gamil.com\",\n    \"mobileNumber\": \"4354437687\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{message_url}}/emailsms",
+							"host": [
+								"{{message_url}}"
+							],
+							"path": [
+								"emailsms"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
